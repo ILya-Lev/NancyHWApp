@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using ShoppingCart.Model;
+﻿using ShoppingCart.Model;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ShoppingCart.Services
 {
     public interface IProductCatalogClient
     {
-        IEnumerable<Product> GetShoppingCartItems(int[] productIds);
+        Task<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(int[] productIds);
     }
 }

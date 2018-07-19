@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using ShoppingCart.Model;
 using ShoppingCart.Services;
 
@@ -25,10 +26,10 @@ namespace ShoppingCart
         public ShoppingCartModel Get(int userId) => _shoppingCartStore.Get(userId);
 
         [HttpPost("/{userId}")]
-        public ShoppingCartModel Post(int userId, [FromBody] int[] productIds)
+        public async Task<ShoppingCartModel> Post(int userId, [FromBody] int[] productIds)
         {
             var cart = _shoppingCartStore.Get(userId);
-            var products = _productCatalogClient.GetShoppingCartItems(productIds);
+            var products = await _productCatalogClient.GetShoppingCartItems(productIds).ConfigureAwait(false);
 
             cart.AddProducts(products, _eventStore);
 

@@ -10,15 +10,20 @@ namespace ShoppingCart.Model
         public int UserId { get; set; }
         public Product[] Products => _products.Values.ToArray();
 
-        public void AddProducts(IEnumerable<Product> products, IEventStore eventStore)
+        public void AddProducts(IEnumerable<ShoppingCartItem> products, IEventStore eventStore)
         {
-            foreach (var product in products)
+            foreach (var cartItem in products)
             {
-                if (!_products.ContainsKey(product.Id))
+                if (!_products.ContainsKey(cartItem.Id))
                 {
-                    _products.Add(product.Id, null);
+                    _products.Add(cartItem.Id, null);
                 }
-                _products[product.Id] = product;
+                _products[cartItem.Id] = new Product()
+                {
+                    Id = cartItem.Id,
+                    Name = cartItem.ProductName,
+                    Price = cartItem.Price.Amount
+                };
             }
         }
 

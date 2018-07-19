@@ -19,8 +19,7 @@ namespace ShoppingCart
                 var productIds = this.Bind<int[]>();
                 var shoppingCart = GetShoppingCart(shoppingCartStore, parameters);
 
-                var products = productCatalogClient.GetShoppingCartItems(productIds);
-                //var products = await productCatalogClient.GetShoppingCartItems(productIds).ConfigureAwait(false);
+                var products = await productCatalogClient.GetShoppingCartItems(productIds).ConfigureAwait(false);
                 shoppingCart.AddProducts(products, eventStore);
 
                 shoppingCartStore.Save(shoppingCart);
