@@ -24,6 +24,8 @@ namespace ShoppingCart.Model
                     Name = cartItem.ProductName,
                     Price = cartItem.Price.Amount
                 };
+
+                eventStore.Raise("ShoppingCartItemAdded", new { UserId, cartItem });
             }
         }
 
@@ -32,7 +34,10 @@ namespace ShoppingCart.Model
             foreach (var productId in productIds)
             {
                 if (_products.ContainsKey(productId))
+                {
                     _products.Remove(productId);
+                    eventStore.Raise("ShoppingCartItemRemoved", new { UserId, productId });
+                }
             }
         }
     }

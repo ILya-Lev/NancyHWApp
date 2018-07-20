@@ -20,23 +20,24 @@ namespace ShoppingCart.Services
                 attempt => TimeSpan.FromMilliseconds(100 * Math.Pow(2, attempt)));
 
 
-        //private readonly Dictionary<int, Product> _products = new Dictionary<int, Product>()
-        //{
-        //    [1] = new Product { Id = 1, Name = "toothpaste", Price = 10.99m },
-        //    [2] = new Product { Id = 2, Name = "mouthwash", Price = 23.49m },
-        //};
+        private readonly Dictionary<int, ShoppingCartItem> _products = new Dictionary<int, ShoppingCartItem>()
+        {
+            [1] = new ShoppingCartItem(1, "toothpaste", "", new Money { Amount = 10.99m }),
+            [2] = new ShoppingCartItem(2, "mouthwash", "", new Money { Amount = 23.49m }),
+        };
 
         public Task<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(int[] productIds)
         {
-            return exponentialRetryPolicy.ExecuteAsync(async () =>
-                await GetItemsFromCatalogueService(productIds).ConfigureAwait(false));
+            //return exponentialRetryPolicy.ExecuteAsync(async () =>
+            //    await GetItemsFromCatalogueService(productIds).ConfigureAwait(false));
 
-            //return productIds
-            //    .Select(id => _products.ContainsKey(id) ? _products[id] : null)
-            //    .Where(p => p != null);
+            var cartItems = productIds
+                .Select(id => _products.ContainsKey(id) ? _products[id] : null)
+                .Where(p => p != null);
+            return Task.FromResult(cartItems);
         }
 
-        public async Task<IEnumerable<ShoppingCartItem>> GetItemsFromCatalogueService(int[] productIds)
+        private async Task<IEnumerable<ShoppingCartItem>> GetItemsFromCatalogueService(int[] productIds)
         {
             var response = await RequestProductFromCatalogue(productIds);
             var items = await ConvertToShoppingCartItems(response);
