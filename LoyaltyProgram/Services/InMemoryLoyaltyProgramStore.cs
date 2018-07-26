@@ -1,5 +1,4 @@
 ﻿using LoyaltyProgram.Model;
-using System;
 using System.Collections.Generic;
 
 namespace LoyaltyProgram.Services
@@ -13,7 +12,7 @@ namespace LoyaltyProgram.Services
             if (_storage.ContainsKey(userId))
                 return _storage[userId];
 
-            return CreateDummyUser();
+            return null;
         }
 
         public int AddUser(LoyaltyProgramUser user)
@@ -27,7 +26,7 @@ namespace LoyaltyProgram.Services
         public void UpdateUser(int userId, LoyaltyProgramUser user)
         {
             if (!_storage.ContainsKey(userId))
-                throw new Exception($"There is no {nameof(LoyaltyProgramUser)} with id {userId}.");
+                return;
 
             var existingUser = _storage[userId];
             UpdateProperty(user, existingUser, nameof(LoyaltyProgramUser.Name));

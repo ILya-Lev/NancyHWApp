@@ -21,8 +21,6 @@ namespace LoyaltyProgram.Tests
                 }
             });
 
-            id.Should().Be(1, "it's the first item in the storage");
-
             var user = store.GetUser(id);
             user.Name.Should().Be("John");
             user.LoyaltyPoints.Should().Be(10);

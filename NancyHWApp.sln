@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NancyHWApp", "NancyHWApp\Na
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingCart", "ShoppingCart\ShoppingCart.csproj", "{9FD4E63F-8E77-4299-B710-319CDCE30435}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyProgram", "LoyaltyProgram\LoyaltyProgram.csproj", "{A8E2FA9C-24BE-4534-9EFE-4D8AE652A640}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoyaltyProgram", "LoyaltyProgram\LoyaltyProgram.csproj", "{A8E2FA9C-24BE-4534-9EFE-4D8AE652A640}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyProgram.Tests", "LoyaltyProgram.Tests\LoyaltyProgram.Tests.csproj", "{6B66FEEE-3EA4-4439-9437-938F7F1B6626}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoyaltyProgram.Tests", "LoyaltyProgram.Tests\LoyaltyProgram.Tests.csproj", "{6B66FEEE-3EA4-4439-9437-938F7F1B6626}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{D201D987-9ABF-43FB-A619-D841FB86645E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{6B66FEEE-3EA4-4439-9437-938F7F1B6626}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B66FEEE-3EA4-4439-9437-938F7F1B6626}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B66FEEE-3EA4-4439-9437-938F7F1B6626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D201D987-9ABF-43FB-A619-D841FB86645E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D201D987-9ABF-43FB-A619-D841FB86645E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D201D987-9ABF-43FB-A619-D841FB86645E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D201D987-9ABF-43FB-A619-D841FB86645E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
