@@ -53,6 +53,7 @@ namespace LoyaltyProgramEventConsumer
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(_eventFeedHost);
+                //todo: important to have the accept header - otherwise 500 is returned each time
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 var response = await client.GetAsync($"/events?start={_start}&end={_start + _chunkSize}")
                     .ConfigureAwait(false);
