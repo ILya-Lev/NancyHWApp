@@ -1,8 +1,8 @@
-﻿using Nancy;
+﻿using System;
+using Nancy;
 using Nancy.Bootstrapper;
-using System;
 
-namespace LoyaltyProgram
+namespace LoyaltyProgram.Infrastructure
 {
     public class Bootstrapper : DefaultNancyBootstrapper
     {
