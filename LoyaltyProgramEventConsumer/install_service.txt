@@ -1,0 +1,19 @@
+﻿D:\programming\projects\aspnet\NancyHWApp\LoyaltyProgramEventConsumer>
+sc
+create
+loyalty-program-event-consumer
+binPath="D:\programming\projects\aspnet\NancyHWApp\LoyaltyProgramEventConsumer\bin\Debug\net462\LoyaltyProgramEventConsumer.exe"
+
+
+[SC] CreateService SUCCESS
+
+
+
+
+D:\programming\projects\aspnet\NancyHWApp\LoyaltyProgramEventConsumer>
+sc
+delete
+loyalty-program-event-consumer
+
+
+[SC] DeleteService SUCCESS

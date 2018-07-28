@@ -1,0 +1,5 @@
+Date,Level,Message,Exception
+2018-07-28 13:32:57.7897,Info,Handled event with id 1 and name Created,
+2018-07-28 13:33:10.1150,Info,Handled event with id 2 and name Updated,
+2018-07-28 13:34:32.0311,Info,Handled event with id 1 and name Created,
+2018-07-28 13:34:32.0851,Info,Handled event with id 2 and name Updated,
