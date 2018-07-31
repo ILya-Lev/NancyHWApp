@@ -38,14 +38,20 @@ namespace LoyaltyProgramEventConsumer
 
         public async Task SubscriptionCycleCallback()
         {
-            var response = await ReadEvents();
-            if (response.StatusCode == HttpStatusCode.OK)
-                HandleEvents(response.Content);
-            else
+            try
             {
-                _logger.Error($"Response {response.StatusCode} from {response.RequestMessage}");
+                var response = await ReadEvents();
+                if (response.StatusCode == HttpStatusCode.OK)
+                    HandleEvents(response.Content);
+                else
+                    _logger.Error($"Response {response.StatusCode} from {response.RequestMessage}");
+                _timer.Start();
             }
-            _timer.Start();
+            catch (Exception exc)
+            {
+                _logger.Error(exc, "Cannot send request to SpecialOffer event feed");
+            }
+
         }
 
         private async Task<HttpResponseMessage> ReadEvents()
