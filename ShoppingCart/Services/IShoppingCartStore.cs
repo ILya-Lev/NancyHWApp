@@ -1,10 +1,11 @@
 ﻿using ShoppingCart.Model;
+using System.Threading.Tasks;
 
 namespace ShoppingCart.Services
 {
     public interface IShoppingCartStore
     {
-        ShoppingCartModel Get(int userId);
-        void Save(ShoppingCartModel shoppingCart);
+        Task<ShoppingCartModel> Get(int userId);
+        Task Save(ShoppingCartModel shoppingCart);
     }
 }

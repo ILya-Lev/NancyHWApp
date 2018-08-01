@@ -2,6 +2,7 @@
 using Nancy.ModelBinding;
 using ShoppingCart.Model;
 using ShoppingCart.Services;
+using System.Threading.Tasks;
 
 namespace ShoppingCart
 {
@@ -17,7 +18,7 @@ namespace ShoppingCart
             Post("/{userid:int}", async (parameters, _) =>
             {
                 var productIds = this.Bind<int[]>();
-                var shoppingCart = GetShoppingCart(shoppingCartStore, parameters);
+                var shoppingCart = await GetShoppingCart(shoppingCartStore, parameters);
 
                 var products = await productCatalogClient.GetShoppingCartItems(productIds).ConfigureAwait(false);
                 shoppingCart.AddProducts(products, eventStore);
@@ -26,10 +27,10 @@ namespace ShoppingCart
                 return shoppingCart;
             });
 
-            Delete("/{userid:int}", parameters =>
+            Delete("/{userid:int}", async parameters =>
             {
                 var productIds = this.Bind<int[]>(new BindingConfig() { BodyOnly = true });
-                var shoppingCart = GetShoppingCart(shoppingCartStore, parameters);
+                var shoppingCart = await GetShoppingCart(shoppingCartStore, parameters);
 
                 shoppingCart.RemoveProducts(productIds, eventStore);
 
@@ -38,7 +39,7 @@ namespace ShoppingCart
             });
         }
 
-        private static ShoppingCartModel GetShoppingCart(IShoppingCartStore shoppingCartStore, dynamic parameters)
+        private Task<ShoppingCartModel> GetShoppingCart(IShoppingCartStore shoppingCartStore, dynamic parameters)
         {
             var userId = (int)parameters.userId;
             return shoppingCartStore.Get(userId);

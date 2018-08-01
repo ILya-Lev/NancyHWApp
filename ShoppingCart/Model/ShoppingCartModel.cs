@@ -8,7 +8,26 @@ namespace ShoppingCart.Model
     {
         private readonly Dictionary<int, Product> _products = new Dictionary<int, Product>();
         public int UserId { get; set; }
-        public Product[] Products => _products.Values.ToArray();
+
+        public Product[] Products
+        {
+            get => _products.Values.ToArray();
+            set
+            {
+                if (value?.Any() == true)
+                {
+                    foreach (var product in value)
+                    {
+                        if (_products.ContainsKey(product.Id))
+                            _products[product.Id] = product;
+                        else
+                            _products.Add(product.Id, product);
+                    }
+                }
+            }
+        }
+
+        public IEnumerable<ShoppingCartItem> Items { get; set; }
 
         public void AddProducts(IEnumerable<ShoppingCartItem> products, IEventStore eventStore)
         {

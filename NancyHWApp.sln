@@ -13,9 +13,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoyaltyProgram.Tests", "Loy
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "ApiGateway\ApiGateway.csproj", "{D201D987-9ABF-43FB-A619-D841FB86645E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecialOffers", "SpecialOffers\SpecialOffers.csproj", "{BDA76407-1BD7-4B1F-BEFC-85F99FF31035}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpecialOffers", "SpecialOffers\SpecialOffers.csproj", "{BDA76407-1BD7-4B1F-BEFC-85F99FF31035}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoyaltyProgramEventConsumer", "LoyaltyProgramEventConsumer\LoyaltyProgramEventConsumer.csproj", "{88FB1B34-4357-413E-927B-923D58AED1B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoyaltyProgramEventConsumer", "LoyaltyProgramEventConsumer\LoyaltyProgramEventConsumer.csproj", "{88FB1B34-4357-413E-927B-923D58AED1B2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "databases", "databases", "{1A5470D0-F518-4CF3-B643-DCA2C2946BF4}"
+	ProjectSection(SolutionItems) = preProject
+		databases\ShoppingCart_db.mdf = databases\ShoppingCart_db.mdf
+		databases\ShoppingCart_db_log.ldf = databases\ShoppingCart_db_log.ldf
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
