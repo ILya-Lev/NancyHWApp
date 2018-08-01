@@ -1,6 +1,6 @@
-﻿using System;
-using Nancy;
+﻿using Nancy;
 using Nancy.Bootstrapper;
+using System;
 
 namespace LoyaltyProgram.Infrastructure
 {
