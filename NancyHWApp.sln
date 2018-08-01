@@ -25,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "databases", "databases", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingCart461", "ShoppingCart461\ShoppingCart461.csproj", "{5CCD908A-4375-4912-88BA-D3190C513A0C}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ShoppingCartStoreDb", "ShoppingCartStoreDb\ShoppingCartStoreDb.sqlproj", "{011B7CEC-23A7-4778-A2AD-2550F3779032}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,12 @@ Global
 		{5CCD908A-4375-4912-88BA-D3190C513A0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CCD908A-4375-4912-88BA-D3190C513A0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CCD908A-4375-4912-88BA-D3190C513A0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{011B7CEC-23A7-4778-A2AD-2550F3779032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{011B7CEC-23A7-4778-A2AD-2550F3779032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{011B7CEC-23A7-4778-A2AD-2550F3779032}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{011B7CEC-23A7-4778-A2AD-2550F3779032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{011B7CEC-23A7-4778-A2AD-2550F3779032}.Release|Any CPU.Build.0 = Release|Any CPU
+		{011B7CEC-23A7-4778-A2AD-2550F3779032}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
