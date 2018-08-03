@@ -107,7 +107,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DbEventStore.cs" />
     <Compile Include="Services\EventStore.cs" />
+    <Compile Include="Services\ICache.cs" />
     <Compile Include="Services\IEventStore.cs" />
+    <Compile Include="Services\InMemoryCache.cs" />
     <Compile Include="Services\IProductCatalogClient.cs" />
     <Compile Include="Services\IShoppingCartStore.cs" />
     <Compile Include="Services\ProductCatalogClient.cs" />

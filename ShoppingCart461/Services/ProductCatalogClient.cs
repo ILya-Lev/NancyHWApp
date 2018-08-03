@@ -11,8 +11,9 @@ namespace ShoppingCart.Services
 {
     public class ProductCatalogClient : IProductCatalogClient
     {
-        private static readonly string productCatalogBaseUrl = "http://localhost:44000";
-        private static readonly string getProductPathTemplate = "/products?productids=[{0}]";
+        private readonly ICache _cache;
+        private static readonly string productCatalogBaseUrl = "http://localhost:18169";
+        private static readonly string getProductPathTemplate = "/products?productids={0}";
 
         //attempt variable is initialized from 1 to 3 inclusively!
         private static readonly Policy exponentialRetryPolicy = Policy.Handle<Exception>()
@@ -26,15 +27,20 @@ namespace ShoppingCart.Services
             [2] = new ShoppingCartItem(2, "mouthwash", "", new Money { Amount = 23.49m }),
         };
 
+        public ProductCatalogClient(ICache cache)
+        {
+            _cache = cache;
+        }
+
         public Task<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(int[] productIds)
         {
-            //return exponentialRetryPolicy.ExecuteAsync(async () =>
-            //    await GetItemsFromCatalogueService(productIds).ConfigureAwait(false));
+            return exponentialRetryPolicy.ExecuteAsync(async () =>
+                await GetItemsFromCatalogueService(productIds).ConfigureAwait(false));
 
-            var cartItems = productIds
-                .Select(id => _products.ContainsKey(id) ? _products[id] : null)
-                .Where(p => p != null);
-            return Task.FromResult(cartItems);
+            //var cartItems = productIds
+            //    .Select(id => _products.ContainsKey(id) ? _products[id] : null)
+            //    .Where(p => p != null);
+            //return Task.FromResult(cartItems);
         }
 
         private async Task<IEnumerable<ShoppingCartItem>> GetItemsFromCatalogueService(int[] productIds)
@@ -47,11 +53,25 @@ namespace ShoppingCart.Services
         private async Task<HttpResponseMessage> RequestProductFromCatalogue(int[] productIds)
         {
             var requestAndPath = string.Format(getProductPathTemplate, string.Join(", ", productIds));
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(productCatalogBaseUrl);
-                return await client.GetAsync(requestAndPath).ConfigureAwait(false);
-            }
+            var response = _cache.Get(requestAndPath) as HttpResponseMessage;
+
+            if (response == null)
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(productCatalogBaseUrl);
+                    response = await client.GetAsync(requestAndPath).ConfigureAwait(false);
+
+                    AddToCache(requestAndPath, response);
+                }
+
+            return response;
+        }
+
+        private void AddToCache(string key, HttpResponseMessage response)
+        {
+            var maxAge = response.Headers.CacheControl?.MaxAge;
+            if (maxAge.HasValue)
+                _cache.Add(key, response, maxAge.Value);
         }
 
         private async Task<IEnumerable<ShoppingCartItem>> ConvertToShoppingCartItems(HttpResponseMessage response)
