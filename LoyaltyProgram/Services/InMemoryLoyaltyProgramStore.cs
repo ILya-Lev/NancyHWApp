@@ -39,7 +39,7 @@ namespace LoyaltyProgram.Services
             var propertyInfo = typeof(LoyaltyProgramUser).GetProperty(propertyName);
             var sourceValue = propertyInfo.GetValue(source);
             var targetValue = propertyInfo.GetValue(target);
-            if (!sourceValue.Equals(targetValue))
+            if (sourceValue != null && !sourceValue.Equals(targetValue))
                 propertyInfo.SetValue(target, sourceValue);
         }
 
