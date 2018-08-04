@@ -40,7 +40,7 @@ namespace LoyaltyProgramEventConsumer
         {
             try
             {
-                var response = await ReadEvents();
+                var response = await ReadEvents().ConfigureAwait(false);
                 if (response.StatusCode == HttpStatusCode.OK)
                     HandleEvents(response.Content);
                 else
