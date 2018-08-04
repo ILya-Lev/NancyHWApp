@@ -16,6 +16,11 @@ namespace ApiGateway
             .Handle<Exception>()
             .WaitAndRetryAsync(5, attempt => TimeSpan.FromMilliseconds(100 * Math.Pow(2, attempt)));
 
+        //seems not to work properly
+        private static readonly Policy _circuitBreakerPolicy = Policy
+            .Handle<Exception>()
+            .CircuitBreakerAsync(5, TimeSpan.FromSeconds(30));
+
         //it's not working the way it was intended; check health should be done manually
         //private static readonly Policy _retryHeartBeatPolicy = Policy.Handle<Exception>()
         //    .WaitAndRetryAsync(3, attempt => TimeSpan.FromMilliseconds(200 * Math.Pow(2, attempt)),
@@ -29,7 +34,7 @@ namespace ApiGateway
 
         public async Task<LoyaltyProgramUser> UpdateUser(LoyaltyProgramUser user)
         {
-            return await _retryExponentialPolicy.ExecuteAsync(() => DoUpdateUser(user));
+            return await _circuitBreakerPolicy.ExecuteAsync(() => DoUpdateUser(user));
         }
 
         public async Task<LoyaltyProgramUser> QueryUser(int userId)
@@ -79,7 +84,7 @@ namespace ApiGateway
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(_loyaltyServiceHost);
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 var response = await client.PutAsync($"/users/{user.Id}",
                     new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json"));
