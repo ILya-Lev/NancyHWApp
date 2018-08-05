@@ -32,6 +32,8 @@ namespace NancyHWApp
                 Debug.WriteLine($"processing response {env["owin.ResponseStatusCode"]}");
             });
 
+            buildFunc(next => new ConsoleMiddleware(next).Run);
+
             return buildFunc.UseNancy();
         }
     }

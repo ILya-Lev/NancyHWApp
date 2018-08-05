@@ -4,6 +4,10 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NETCOREAPP;NETCOREAPP2_1;LIBOWIN_PUBLIC</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
@@ -14,6 +18,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="2.1.2" />
     <PackageReference Include="Nancy" Version="2.0.0-clinteastwood" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

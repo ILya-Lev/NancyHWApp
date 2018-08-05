@@ -29,6 +29,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "ShoppingCartStoreDb", "Shop
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductCatalog", "ProductCatalog\ProductCatalog.csproj", "{BD0A309F-EC75-45B8-ABA4-042C6B7BDECE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NancyHWApp.Tests", "NancyHWApp.Tests\NancyHWApp.Tests.csproj", "{0698E336-124E-4A43-84B2-E87C953F9842}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,10 @@ Global
 		{BD0A309F-EC75-45B8-ABA4-042C6B7BDECE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD0A309F-EC75-45B8-ABA4-042C6B7BDECE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD0A309F-EC75-45B8-ABA4-042C6B7BDECE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0698E336-124E-4A43-84B2-E87C953F9842}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0698E336-124E-4A43-84B2-E87C953F9842}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0698E336-124E-4A43-84B2-E87C953F9842}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0698E336-124E-4A43-84B2-E87C953F9842}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
