@@ -9,6 +9,9 @@ namespace ShoppingCart461
     {
         public void Configuration(IAppBuilder app)
         {
+            //todo: is not working!
+            //app.Use(typeof(MonitoringMiddleware), new StateValidator(1));
+            //app.Use<MonitoringMiddleware>(new StateValidator(1));
             app.UseNancy();
         }
     }

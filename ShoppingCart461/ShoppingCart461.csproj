@@ -99,6 +99,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventFeedModule.cs" />
+    <Compile Include="Infrastructure\IStateValidator.cs" />
+    <Compile Include="Infrastructure\LibOwin.cs" />
+    <Compile Include="Infrastructure\MonitoringMiddleware.cs" />
+    <Compile Include="Infrastructure\StateValidator.cs" />
     <Compile Include="Model\Event.cs" />
     <Compile Include="Model\Money.cs" />
     <Compile Include="Model\Product.cs" />
